@@ -1,57 +1,33 @@
-Substitua a parte superior da página por esta estrutura e adicione os estilos correspondentes.
-
-### HTML
-
 ```html
-<div class="barra-superior">
-    <div class="marca">
-        <img class="logo"
-        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEihbCJxhXbJh3_ZcN6ALpmX0KyKDmIZeZmBvC0qiDwQx2fusb8TgDysMwLVKUsx3ylyOxcGWPVAqayr_OybUbnp3RrqxILmFIWFLnmtY7wFtwPnp8Yx_43NKf5y-uJA_nHedvnkCf8-fWe4ghRi8bDyg5D6tgetF2HiEnwuW22QAdLjjrQZ-JFQdfuvqbM/s1254/ChatGPT%20Image%2017%20de%20jun.%20de%202026,%2010_50_40%20(1).png">
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Genesis Educa360 - Palestra Ao Vivo</title>
 
-        <div class="nome-marca">
-            <div class="titulo-marca">
-                Genesis Educa360
-            </div>
+<style>
 
-            <div class="subtitulo-marca">
-                Plataforma Educacional
-            </div>
-        </div>
-    </div>
+body{
+    margin:0;
+    background:#f5f9fc;
+    color:#1f2937;
+    font-family:Arial,sans-serif;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
 
-    <div class="selo-evento">
-        🎓 Evento Certificado
-    </div>
-</div>
-
-<header>Palestra Ao Vivo</header>
-
-<div class="live">
-    🔴 AO VIVO
-</div>
-
-<div class="participantes">
-    👥 1.248 participantes conectados
-</div>
-
-<div class="timer">
-    Tempo de transmissão:
-    <span id="tempo">00:00</span>
-</div>
-```
-
-### CSS
-
-```css
+/* Barra superior */
 .barra-superior{
     width:100%;
     background:#0d47a1;
     color:white;
     padding:12px 20px;
+    box-sizing:border-box;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    box-sizing:border-box;
 }
 
 .marca{
@@ -82,10 +58,253 @@ Substitua a parte superior da página por esta estrutura e adicione os estilos c
     font-weight:bold;
 }
 
+/* Título */
+header{
+    margin-top:25px;
+    font-size:32px;
+    font-weight:bold;
+    color:#0d47a1;
+}
+
+.live{
+    margin-top:10px;
+    color:red;
+    font-weight:bold;
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+    0%{opacity:1;}
+    50%{opacity:.3;}
+    100%{opacity:1;}
+}
+
 .participantes{
-    margin-top:12px;
+    margin-top:10px;
     color:#2563eb;
+    font-weight:bold;
     font-size:17px;
+}
+
+.timer{
+    margin-top:12px;
+    color:#555;
+    font-size:16px;
+}
+
+.player{
+    position:relative;
+    width:90%;
+    max-width:900px;
+    aspect-ratio:16/9;
+    margin-top:20px;
+    overflow:hidden;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+
+iframe{
+    width:100%;
+    height:100%;
+    border:none;
+}
+
+.overlay{
+    position:absolute;
+    inset:0;
+    background:transparent;
+    z-index:10;
+}
+
+/* Botões */
+button{
+    border:none;
+    border-radius:10px;
+    padding:14px 24px;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.sound-btn{
+    margin-top:25px;
+    background:#16a34a;
+    color:white;
+}
+
+.sound-btn:hover{
+    background:#15803d;
+}
+
+#contadorCertificado{
+    margin-top:35px;
+    color:#0d47a1;
+    font-size:18px;
     font-weight:bold;
 }
+
+.certificado-btn{
+    margin-top:15px;
+    background:#94a3b8;
+    color:white;
+    cursor:not-allowed;
+}
+
+.certificado-btn.ativo{
+    background:#2563eb;
+    cursor:pointer;
+}
+
+.certificado-btn.ativo:hover{
+    background:#1d4ed8;
+}
+
+</style>
+</head>
+<body>
+
+<div class="barra-superior">
+
+    <div class="marca">
+
+        <img class="logo"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEihbCJxhXbJh3_ZcN6ALpmX0KyKDmIZeZmBvC0qiDwQx2fusb8TgDysMwLVKUsx3ylyOxcGWPVAqayr_OybUbnp3RrqxILmFIWFLnmtY7wFtwPnp8Yx_43NKf5y-uJA_nHedvnkCf8-fWe4ghRi8bDyg5D6tgetF2HiEnwuW22QAdLjjrQZ-JFQdfuvqbM/s1254/ChatGPT%20Image%2017%20de%20jun.%20de%202026,%2010_50_40%20(1).png">
+
+        <div>
+
+            <div class="titulo-marca">
+                Genesis Educa360
+            </div>
+
+            <div class="subtitulo-marca">
+                Plataforma Educacional
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="selo-evento">
+        🎓 Evento Certificado
+    </div>
+
+</div>
+
+<header>Palestra Ao Vivo</header>
+
+<div class="live">
+    🔴 AO VIVO
+</div>
+
+<div class="participantes">
+    👥 1.248 participantes conectados
+</div>
+
+<div class="timer">
+    ⏱ Tempo de transmissão:
+    <span id="tempo">00:00</span>
+</div>
+
+<div class="player">
+
+<iframe
+id="video"
+src="https://www.youtube.com/embed/J4XQM3W5Q78?enablejsapi=1&autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&fs=0"
+allow="autoplay">
+</iframe>
+
+<div class="overlay"></div>
+
+</div>
+
+<button class="sound-btn" onclick="ativarSom()">
+🔊 Ativar Som
+</button>
+
+<div id="contadorCertificado">
+📜 Certificado disponível em: 01:00
+</div>
+
+<button
+id="certificado"
+class="certificado-btn"
+disabled>
+📜 Emitir Certificado
+</button>
+
+<script>
+
+function ativarSom(){
+    document.getElementById("video").contentWindow.postMessage(
+    '{"event":"command","func":"unMute","args":""}',
+    '*');
+}
+
+/* Contador da transmissão */
+
+let segundos = 0;
+
+setInterval(() => {
+
+    segundos++;
+
+    let min = Math.floor(segundos/60);
+    let seg = segundos%60;
+
+    document.getElementById("tempo").innerHTML =
+        String(min).padStart(2,'0')
+        + ":"
+        +
+        String(seg).padStart(2,'0');
+
+},1000);
+
+
+/* Contagem regressiva do certificado */
+
+let restante = 60;
+
+let intervalo = setInterval(() => {
+
+    restante--;
+
+    let min = Math.floor(restante/60);
+    let seg = restante%60;
+
+    document.getElementById("contadorCertificado").innerHTML =
+    "📜 Certificado disponível em: "
+    +
+    String(min).padStart(2,'0')
+    + ":"
+    +
+    String(seg).padStart(2,'0');
+
+    if(restante <= 0){
+
+        clearInterval(intervalo);
+
+        document.getElementById("contadorCertificado").innerHTML =
+        "✅ Certificado disponível para emissão";
+
+        let botao = document.getElementById("certificado");
+
+        botao.disabled = false;
+
+        botao.classList.add("ativo");
+
+        botao.onclick = function(){
+
+            window.location.href =
+            "https://empresa-astra-link.github.io/genesiseduca360/certificado.html";
+
+        };
+
+    }
+
+},1000);
+
+</script>
+
+</body>
+</html>
 ```
