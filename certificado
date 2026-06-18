@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emissão de Certificado</title>
+
+<style>
+body{
+    margin:0;
+    background:#f4f4f4;
+    font-family:Arial, sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.container{
+    background:white;
+    width:90%;
+    max-width:700px;
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 0 15px rgba(0,0,0,.15);
+    text-align:center;
+}
+
+h1{
+    color:#333;
+    margin-bottom:10px;
+}
+
+p{
+    color:#666;
+    margin-bottom:35px;
+}
+
+.opcao{
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:25px;
+    margin-bottom:25px;
+}
+
+.opcao h2{
+    margin-top:0;
+    color:#222;
+}
+
+.opcao p{
+    margin-bottom:20px;
+    line-height:1.5;
+}
+
+.botao{
+    border:none;
+    padding:15px 25px;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.gratis{
+    background:#28a745;
+    color:white;
+}
+
+.premium{
+    background:#0069d9;
+    color:white;
+}
+
+.botao:hover{
+    opacity:0.9;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>Emissão de Certificado</h1>
+
+<p>
+Selecione uma das opções abaixo para emitir seu certificado de participação.
+</p>
+
+<div class="opcao">
+    <h2>📄 Certificado Genérico</h2>
+
+    <p>
+        Certificado de participação gratuito, destinado para uso pessoal e comprovação informal de presença no evento.
+    </p>
+
+    <button class="botao gratis"
+        onclick="window.location.href='certificado-gratis.pdf'">
+        Emitir gratuitamente
+    </button>
+</div>
+
+
+<div class="opcao">
+    <h2>🏅 Certificado com Assinatura Digital</h2>
+
+    <p>
+        Certificado contendo assinatura digital e código de verificação para autenticação eletrônica do documento.
+    </p>
+
+    <button class="botao premium"
+        onclick="window.location.href='pagamento.html'">
+        Solicitar certificado
+    </button>
+</div>
+
+</div>
+
+</body>
+</html>
