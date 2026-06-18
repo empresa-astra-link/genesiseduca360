@@ -1,177 +1,91 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Palestra Ao Vivo</title>
+Substitua a parte superior da página por esta estrutura e adicione os estilos correspondentes.
 
-<style>
-body{
-    margin:0;
-    background:#000;
+### HTML
+
+```html
+<div class="barra-superior">
+    <div class="marca">
+        <img class="logo"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEihbCJxhXbJh3_ZcN6ALpmX0KyKDmIZeZmBvC0qiDwQx2fusb8TgDysMwLVKUsx3ylyOxcGWPVAqayr_OybUbnp3RrqxILmFIWFLnmtY7wFtwPnp8Yx_43NKf5y-uJA_nHedvnkCf8-fWe4ghRi8bDyg5D6tgetF2HiEnwuW22QAdLjjrQZ-JFQdfuvqbM/s1254/ChatGPT%20Image%2017%20de%20jun.%20de%202026,%2010_50_40%20(1).png">
+
+        <div class="nome-marca">
+            <div class="titulo-marca">
+                Genesis Educa360
+            </div>
+
+            <div class="subtitulo-marca">
+                Plataforma Educacional
+            </div>
+        </div>
+    </div>
+
+    <div class="selo-evento">
+        🎓 Evento Certificado
+    </div>
+</div>
+
+<header>Palestra Ao Vivo</header>
+
+<div class="live">
+    🔴 AO VIVO
+</div>
+
+<div class="participantes">
+    👥 1.248 participantes conectados
+</div>
+
+<div class="timer">
+    Tempo de transmissão:
+    <span id="tempo">00:00</span>
+</div>
+```
+
+### CSS
+
+```css
+.barra-superior{
+    width:100%;
+    background:#0d47a1;
     color:white;
-    font-family:Arial,sans-serif;
+    padding:12px 20px;
     display:flex;
-    flex-direction:column;
+    justify-content:space-between;
+    align-items:center;
+    box-sizing:border-box;
+}
+
+.marca{
+    display:flex;
     align-items:center;
 }
 
-header{
-    margin-top:15px;
+.logo{
+    height:50px;
+    margin-right:12px;
+}
+
+.titulo-marca{
     font-size:22px;
     font-weight:bold;
 }
 
-.live{
-    margin-top:10px;
-    color:red;
+.subtitulo-marca{
+    font-size:13px;
+    opacity:.9;
+}
+
+.selo-evento{
+    background:#16a34a;
+    padding:10px 18px;
+    border-radius:25px;
+    font-size:14px;
     font-weight:bold;
-    animation:blink 1s infinite;
 }
 
-@keyframes blink{
-    0%{opacity:1;}
-    50%{opacity:0.2;}
-    100%{opacity:1;}
+.participantes{
+    margin-top:12px;
+    color:#2563eb;
+    font-size:17px;
+    font-weight:bold;
 }
-
-.timer{
-    margin-top:10px;
-    color:#ccc;
-    font-size:15px;
-}
-
-.player{
-    position:relative;
-    width:90%;
-    max-width:900px;
-    aspect-ratio:16/9;
-    margin-top:15px;
-}
-
-iframe{
-    width:100%;
-    height:100%;
-    border:none;
-}
-
-.overlay{
-    position:absolute;
-    inset:0;
-    background:transparent;
-    z-index:10;
-}
-
-button{
-    border:none;
-    border-radius:8px;
-    padding:14px 22px;
-    margin-top:20px;
-    font-size:16px;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.sound-btn{
-    background:#444;
-    color:white;
-}
-
-.sound-btn:hover{
-    background:green;
-}
-
-.certificado-btn{
-    background:#666;
-    color:white;
-    cursor:not-allowed;
-}
-
-.certificado-btn.ativo{
-    background:#007bff;
-    cursor:pointer;
-}
-
-.certificado-btn.ativo:hover{
-    background:#005fd1;
-}
-</style>
-</head>
-<body>
-
-<header>Palestra Ao Vivo</header>
-
-<div class="live">🔴 AO VIVO</div>
-
-<div class="timer">
-Tempo de transmissão: <span id="tempo">00:00</span>
-</div>
-
-<div class="player">
-
-<iframe
-id="video"
-src="https://www.youtube.com/embed/J4XQM3W5Q78?enablejsapi=1&autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&fs=0"
-allow="autoplay">
-</iframe>
-
-<div class="overlay"></div>
-
-</div>
-
-<button class="sound-btn" onclick="ativarSom()">
-🔊 Ativar som
-</button>
-
-<button
-id="certificado"
-class="certificado-btn"
-disabled>
-📜 Emitir certificado
-</button>
-
-<script>
-function ativarSom(){
-    document.getElementById("video").contentWindow.postMessage(
-        '{"event":"command","func":"unMute","args":""}',
-        '*'
-    );
-}
-
-// contador da transmissão
-let segundos = 0;
-
-setInterval(() => {
-
-    segundos++;
-
-    let min = Math.floor(segundos / 60);
-    let seg = segundos % 60;
-
-    document.getElementById("tempo").innerHTML =
-        String(min).padStart(2,'0') + ":" +
-        String(seg).padStart(2,'0');
-
-},1000);
-
-
-// libera certificado após 1 minuto
-setTimeout(() => {
-
-    let botao = document.getElementById("certificado");
-
-    botao.disabled = false;
-    botao.classList.add("ativo");
-
-    botao.onclick = function(){
-        alert("Certificado liberado!");
-        // coloque aqui o link do certificado
-        // window.location.href = "certificado.pdf";
-    };
-
-},60000);
-
-</script>
-
-</body>
-</html>
+```
